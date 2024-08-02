@@ -12,7 +12,7 @@ JAVAC = javac
 JAVA = java
 
 # Default target
-.PHONY: all build run clean
+.PHONY: all build run clean build-tool
 
 all: build run
 
@@ -30,3 +30,7 @@ run:
 # Clean up build directory
 clean:
 	rm -rf $(BUILD_DIR)
+
+build-tool:
+	mkdir -p $(BUILD_DIR)
+	$(JAVAC) -d $(BUILD_DIR) tool/GenerateAst.java
