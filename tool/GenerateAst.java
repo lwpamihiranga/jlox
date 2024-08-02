@@ -37,6 +37,9 @@ public class GenerateAst {
          defineType(writer, baseName, className, fields);
       }
 
+      writer.println();
+      writer.println("\tabstract <R> R accept(Visitor<R> visitor);");
+
       writer.println("}");
       writer.close();
    }
@@ -64,6 +67,12 @@ public class GenerateAst {
          writer.println("\t\t\tthis." + name + " = " + name + ";");
       }
 
+      writer.println("\t\t}");
+
+      writer.println();
+      writer.println("\t\t@Override");
+      writer.println("\t\t<R> R accept(Visitor<R> visitor) {");
+      writer.println("\t\t\treturn visitor.visit" + className + baseName + "(this);");
       writer.println("\t\t}");
 
       writer.println();
